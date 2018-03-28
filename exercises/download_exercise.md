@@ -91,7 +91,7 @@ fastqc SRR1984309_1.fastq SRR1984309_2.fastq
 
 This command generates 2 html output files: `SRR1984309_1_fastqc.html` and `SRR1984309_2_fastqc.html`
 
-Copies of these files have been put online at: [SRR1984309_1_fastqc.html](http://htmlpreview.github.com/?https://github.com/stenglein-lab/2018_Todos_Santos/blob/master/exercises/download_exercise.md) and [SRR1984309_2_fastqc.html](../results/SRR1984309_2_fastqc.html).  Click on those links and have a look at the fastqc results.
+Copies of these files have been put online at: [SRR1984309_1_fastqc.html](http://htmlpreview.github.com/?https://github.com/stenglein-lab/2018_Todos_Santos/blob/master/results/SRR1984309_1_fastqc.html) and [SRR1984309_2_fastqc.html](../results/SRR1984309_2_fastqc.html).  Click on those links and have a look at the fastqc results.
 
 These datasets have already been pre-cleaned prior to SRA upload, so they look pretty good.  Note that there is possible Nextera adapter contamination towards the end of some reads.  This makes sense, because the libraries were made with the Nextera protocol.  In the next section, we will trim those off.
 
