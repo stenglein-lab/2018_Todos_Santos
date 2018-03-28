@@ -105,34 +105,38 @@ cutadapt has a lot of options, described [here](http://cutadapt.readthedocs.io/e
 
 We will run this command to trim our reads:
 ```
-cutadapt -a AGATCGGAAGAGC -A AGATCGGAAGAGC -g GCTCTTCCGATCT -G GCTCTTCCGATCT -a AGATGTGTATAAGAGACAG -A AGATGTGTATAAGAGACAG -g CTGTCTCTTATACACATCT -G CTGTCTCTTATACACATCT -q 30,30 --minimum-length 80 -u 1 -o SRR1984309_1_trimmed.fastq -p SRR1984309_2_trimmed.fastq SRR1984309_1.fastq SRR1984309_2.fastq
+cutadapt -b AGATGTGTATAAGAGACAG -B AGATGTGTATAAGAGACAG -b CTGTCTCTTATACACATCT -B CTGTCTCTTATACACATCT -q 30,30 --minimum-length 80 -u 1 -o SRR1984309_1_trimmed.fastq -p SRR1984309_2_trimmed.fastq SRR1984309_1.fastq SRR1984309_2.fastq
 ``` 
 
-Breaking this down:
+What do all these options mean?
 ```
  cutadapt \ 
- -a AGATCGGAAGAGC -A AGATCGGAAGAGC -g GCTCTTCCGATCT -G GCTCTTCCGATCT  \                           # TruSeq style adapters
- -a AGATGTGTATAAGAGACAG -A AGATGTGTATAAGAGACAG -g CTGTCTCTTATACACATCT -G CTGTCTCTTATACACATCT \    # Nextera adapters
- -q 30,30 \                                                                                       # filter low qual seqs -> see cutadapt documentation
- --minimum-length 80 \                                                                            # ditch seqs shorter than this and their pairs
- -u 1  \                                                                                          # trim the last (1 3') base 
- -o SRR1984309_1_trimmed.fastq \                                                                  # trimmed (R1) output
- -p SRR1984309_2_trimmed.fastq \                                                                  # paired read (R2) trimmed output
- SRR1984309_1.fastq SRR1984309_2.fastq                                                            # the name of the input files  
+ -b AGATGTGTATAAGAGACAG -B AGATGTGTATAAGAGACAG \ 
+ -b CTGTCTCTTATACACATCT -B CTGTCTCTTATACACATCT \  # trim Nextera adapters
+ -q 30,30 \                                       # trim low quality bases -> see cutadapt documentation
+ --minimum-length 80 \                            # remove reads shorter than this and their pairs
+ -u 1  \                                          # trim the last 3' base 
+ -o SRR1984309_1_trimmed.fastq \                  # trimmed (read 1) output
+ -p SRR1984309_2_trimmed.fastq \                  # paired read (read 2) trimmed output
+ SRR1984309_1.fastq SRR1984309_2.fastq            # input files  
 ```
 
 You will see some output describing a summary of what cutadapt did that should include something like this: 
 
 ```
-Finished in 15.97 s (110 us/read; 0.54 M reads/minute).
+
+This is cutadapt 1.14 with Python 2.7.12
+Command line parameters: -b AGATGTGTATAAGAGACAG -B AGATGTGTATAAGAGACAG -b CTGTCTCTTATACACATCT -B CTGTCTCTTATACACATCT -q 30,30 --minimum-length 80 -u 1 -o SRR1984309_1_trimmed.fastq -p SRR1984309_2_trimmed.fastq SRR1984309_1.fastq SRR1984309_2.fastq
+Trimming 4 adapters with at most 10.0% errors in paired-end mode ...
+Finished in 10.84 s (75 us/read; 0.80 M reads/minute).
 
 === Summary ===
 
 Total read pairs processed:            144,652
-  Read 1 with adapter:                  17,714 (12.2%)
-  Read 2 with adapter:                  13,178 (9.1%)
-Pairs that were too short:              29,710 (20.5%)
-Pairs written (passing filters):       114,942 (79.5%)
+  Read 1 with adapter:                  27,916 (19.3%)
+  Read 2 with adapter:                  23,814 (16.5%)
+Pairs that were too short:              21,538 (14.9%)
+Pairs written (passing filters):       123,114 (85.1%)
 
 Total basepairs processed:    35,772,475 bp
   Read 1:    17,915,259 bp
@@ -140,9 +144,8 @@ Total basepairs processed:    35,772,475 bp
 Quality-trimmed:                 981,418 bp (2.7%)
   Read 1:       502,667 bp
   Read 2:       478,751 bp
-Total written (filtered):     29,174,970 bp (81.6%)
-  Read 1:    14,546,418 bp
-  Read 2:    14,628,552 bp
+Total written (filtered):     30,830,607 bp (86.2%)
+  Read 1:    15,370,927 bp
 
 ```
 
