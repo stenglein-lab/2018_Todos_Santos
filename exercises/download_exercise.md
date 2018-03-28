@@ -91,7 +91,7 @@ fastqc SRR1984309_1.fastq SRR1984309_2.fastq
 
 This command generates 2 html output files: `SRR1984309_1_fastqc.html` and `SRR1984309_2_fastqc.html`
 
-Copies of these files have been put online at: [SRR1984309_1_fastqc.html](http://htmlpreview.github.com/?https://github.com/stenglein-lab/2018_Todos_Santos/blob/master/results/SRR1984309_1_fastqc.html) and [SRR1984309_2_fastqc.html](../results/SRR1984309_2_fastqc.html).  Click on those links and have a look at the fastqc results.
+Copies of these files have been put online at: [SRR1984309_1_fastqc.html](http://htmlpreview.github.com/?https://github.com/stenglein-lab/2018_Todos_Santos/blob/master/results/SRR1984309_1_fastqc.html) and [SRR1984309_2_fastqc.html](http://htmlpreview.github.com/?https://github.com/stenglein-lab/2018_Todos_Santos/blob/master/results/SRR1984309_2_fastqc.html)).  Click on those links in a browser and have a look at the fastqc results.  
 
 These datasets have already been pre-cleaned prior to SRA upload, so they look pretty good.  Note that there is possible Nextera adapter contamination towards the end of some reads.  This makes sense, because the libraries were made with the Nextera protocol.  In the next section, we will trim those off.
 
@@ -121,20 +121,46 @@ Breaking this down:
  SRR1984309_1.fastq SRR1984309_2.fastq                                                            # the name of the input files  
 `
 
-After you've completed trimming, look to see that the trimmed files exist in your directory:
+You will see some output describing a summary of what cutadapt did that should include something like this: 
+
+```
+Finished in 15.97 s (110 us/read; 0.54 M reads/minute).
+
+=== Summary ===
+
+Total read pairs processed:            144,652
+  Read 1 with adapter:                  17,714 (12.2%)
+  Read 2 with adapter:                  13,178 (9.1%)
+Pairs that were too short:              29,710 (20.5%)
+Pairs written (passing filters):       114,942 (79.5%)
+
+Total basepairs processed:    35,772,475 bp
+  Read 1:    17,915,259 bp
+  Read 2:    17,857,216 bp
+Quality-trimmed:                 981,418 bp (2.7%)
+  Read 1:       502,667 bp
+  Read 2:       478,751 bp
+Total written (filtered):     29,174,970 bp (81.6%)
+  Read 1:    14,546,418 bp
+  Read 2:    14,628,552 bp
+
+```
+
+Now check to see that the trimmed files exist in your directory:
 
 ```
 ls -lh
 ```
 
-- how many reads remain in the trimmed fastq files?
+Let's re-run run fastqc on the files to see what effect trimming had:
+```
+fastqc SRR1984309_1_trimmed.fastq SRR1984309_2_trimmed.fastq
+```
 
-Open your trimmed fastq files in FastQC.  
+This again produces html files, which have been put online at: [SRR1984309_1_trimmed_fastqc.html](http://htmlpreview.github.com/?https://github.com/stenglein-lab/2018_Todos_Santos/blob/master/results/SRR1984309_1_trimmed_fastqc.html) and [SRR1984309_2_trimmed_fastqc.html](http://htmlpreview.github.com/?https://github.com/stenglein-lab/2018_Todos_Santos/blob/master/results/SRR1984309_2_trimmed_fastqc.html)).  Click on those links in a browser and have a look at the fastqc results.  
 
 - Did the quality of the basecalls improve?
 - Did the trimming remove Nextera adapters?
-
-Note: There are other trimming tools that you may find easier to use, such as [cutadapt](http://cutadapt.readthedocs.io/) 
 
 ---
 
