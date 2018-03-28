@@ -1,12 +1,11 @@
 # Downloading and Processing Datasets and Genomes exercise
-[GDW 2017](http://gdwworkshop.colostate.edu/)
 ---
 
 ## In this exercise, we will download, process, and evaluate NGS datasets and genome sequences.  We will:
 
 * Download a dataset from the SRA
 * Use the FASTQC tool to assess the quality of the reads in the dataset
-* Use trimmomatic to remove low quality parts of the reads1
+* Use trimmomatic to remove low quality parts of the reads
 * Find and download genome sequences and associated annotation from NCBI
 
 ---
@@ -28,23 +27,21 @@ Scroll down and find the 'Related information' section of the bottom right of th
 
 We're going to download this dataset using the command line tool fastq-dump, part of the [SRA toolkit](https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=toolkit_doc).  First, let's create a directory (folder) in which to work.  Open the terminal app on your laptop and type these commands:
 
+Login to the cctsi-104 server using ssh, if not already logged in.
+
 change (move) to your home directory, if not already there
 ```
 cd
 ```
 
-Hint: Typing command–+ in the Terminal app will increase the font size.   
-Hint: You can open multiple tabs in the Terminal app (command–T) 
-
-
 make a new directory
 ```
-mkdir gdw_working
+mkdir ts_working
 ```
 
 move to that directory
 ```
-cd gdw_working
+cd ts_working
 ```
 
 double check you are in the directory you think you are:
@@ -57,10 +54,10 @@ We will download the dataset using the fastq-dump tool, part of the [SRA toolkit
 To run fasta-dump, you just need to specify the run # (the SRR#) of the dataset you want.  Recall that our run # is SRR1984309. The --split-files option of the command will create 2, synchronized files for the paired reads
 
 ```
-~/Desktop/GDW_Apps/sratoolkit/bin/fastq-dump SRR1984309 --split-files
+fastq-dump SRR1984309 --split-files
 ```
 
-Confirm that you downloaded the files.  You should see files named SRR1984309_1.fastq and SRR1984309_2.fastq that are each 44 Mb.
+It might take ~5 minutes to download these datasets.  Confirm that you downloaded the files.  You should see files named SRR1984309_1.fastq and SRR1984309_2.fastq that are each 44 Mb.
 
 ```
 ls -lh
@@ -87,48 +84,40 @@ head -20 SRR1984309_1.fastq SRR1984309_2.fastq
 
 Performing a quick check like this of your data is one of the first things you'll want to do when you receive your new sequencing data (or when you download a dataset from an online repository like the SRA).
 
-FastQC can be used via a graphical interface or via the command line.  On your laptops, the FastQC graphical interface is on the Desktop in: /GDW_Apps/FastQC
+Run fastqc as follows:
+```
+fastqc SRR1984309_1.fastq SRR1984309_2.fastq
+```
 
-Navigate to that folder and open FastQC.  Then open the fastq files you downloaded from the SRA.  FastQC will take a couple seconds to analyze them.
+This command generates 2 html output files: `SRR1984309_1_fastqc.html` and `SRR1984309_2_fastqc.html`
 
-These datasets have already been pre-cleaned, so they look pretty good.  Note that there is possible Nextera adapter contamination towards the end of some reads.  This makes sense, because the libraries were made with the Nextera protocol.  In the next section, we will trim those off.
+These datasets have already been pre-cleaned prior to SRA upload, so they look pretty good.  Note that there is possible Nextera adapter contamination towards the end of some reads.  This makes sense, because the libraries were made with the Nextera protocol.  In the next section, we will trim those off.
 
 ---
 
-### Read trimming with trimmomatic
+### Read trimming with cutadapt
 
-[Trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic) is a tool that can be used to trim low quality and adapter sequences from NGS reads.  It's always a good idea to trim raw NGS reads.
+[cutadapt](http://cutadapt.readthedocs.io/en/stable/guide.html) is a tool that can be used to trim low quality and adapter sequences from NGS reads.  It's always a good idea to trim raw NGS reads as a first analysis step.
 
-Trimmomatic has _a lot_ of options, described [here](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf)
+cutadapt has a lot of options, described [here](http://cutadapt.readthedocs.io/en/stable/guide.html) 
 
 We will run this command to trim our reads:
-
-**DON'T USE THIS**
 ```
-java -jar ~/Desktop/GDW_Apps/Trimmomatic-0.36/trimmomatic-0.36.jar PE  \
-	SRR1984309_1.fastq SRR1984309_2.fastq \
-	SRR1984309_1_trimmed.fastq SRR1984309_1_trimmed_unpaired.fastq \
-	SRR1984309_2_trimmed.fastq SRR1984309_2_trimmed_unpaired.fastq \
-	ILLUMINACLIP:../Desktop/GDW_Apps/Trimmomatic-0.36/adapters/NexteraPE-PE.fa:2:30:10 \
-	LEADING:20 TRAILING:20 \
-	SLIDINGWINDOW:4:20 \
-	MINLEN:60
-
-```
-**USE THIS INSTEAD (single line version)**
-```
-java -jar ~/Desktop/GDW_Apps/Trimmomatic-0.36/trimmomatic-0.36.jar PE  SRR1984309_1.fastq SRR1984309_2.fastq SRR1984309_1_trimmed.fastq SRR1984309_1_trimmed_unpaired.fastq SRR1984309_2_trimmed.fastq SRR1984309_2_trimmed_unpaired.fastq ILLUMINACLIP:../Desktop/GDW_Apps/Trimmomatic-0.36/adapters/NexteraPE-PE.fa:2:30:10 LEADING:20 TRAILING:20 SLIDINGWINDOW:4:20 MINLEN:60 
+cutadapt -a AGATCGGAAGAGC -A AGATCGGAAGAGC -g GCTCTTCCGATCT -G GCTCTTCCGATCT -a AGATGTGTATAAGAGACAG -A AGATGTGTATAAGAGACAG -g CTGTCTCTTATACACATCT -G CTGTCTCTTATACACATCT -q 30,30 --minimum-length 80 -u 1 -o SRR1984309_1_trimmed.fastq -p SRR1984309_2_trimmed.fastq SRR1984309_1.fastq SRR1984309_2.fastq
 ``` 
-_Note that the `\` character at the end of lines allows you to perform a multi-line command at the linux command line._
-
 
 Breaking this down:
-- Names of input and output files: SRR1984309_1.fastq etc.    
-- Trim Nextera adapter sequences (ILLUMINACLIP:...NexteraPE-PE.fa:2:30:10)
-- Remove low quality bases from the 5' ends of the reads (below quality 20) (LEADING:20)
-- Remove low quality bases from the 3' ends of the reads (below quality 20) (TRAILING:20)
-- Trim reads if internal low quality bases (SLIDINGWINDOW:4:20)
-- Remove reads shorter than 60 bases (MINLEN:60)
+`
+ cutadapt \ 
+ -a AGATCGGAAGAGC -A AGATCGGAAGAGC -g GCTCTTCCGATCT -G GCTCTTCCGATCT  \                           # TruSeq style adapters
+ -a AGATGTGTATAAGAGACAG -A AGATGTGTATAAGAGACAG -g CTGTCTCTTATACACATCT -G CTGTCTCTTATACACATCT \    # Nextera adapters
+ -q 30,30 \                                                                                       # filter low qual seqs -> see cutadapt documentation
+ --minimum-length 80 \                                                                            # ditch seqs shorter than this and their pairs
+ -u 1  \                                                                                          # trim the last (1 3') base 
+ -o SRR1984309_1_trimmed.fastq \                                                                  # trimmed (R1) output
+ -p SRR1984309_2_trimmed.fastq \                                                                  # paired read (R2) trimmed output
+ SRR1984309_1.fastq SRR1984309_2.fastq                                                            # the name of the input files  
+`
 
 After you've completed trimming, look to see that the trimmed files exist in your directory:
 
