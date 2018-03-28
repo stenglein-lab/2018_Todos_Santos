@@ -109,7 +109,7 @@ cutadapt -a AGATCGGAAGAGC -A AGATCGGAAGAGC -g GCTCTTCCGATCT -G GCTCTTCCGATCT -a 
 ``` 
 
 Breaking this down:
-`
+```
  cutadapt \ 
  -a AGATCGGAAGAGC -A AGATCGGAAGAGC -g GCTCTTCCGATCT -G GCTCTTCCGATCT  \                           # TruSeq style adapters
  -a AGATGTGTATAAGAGACAG -A AGATGTGTATAAGAGACAG -g CTGTCTCTTATACACATCT -G CTGTCTCTTATACACATCT \    # Nextera adapters
@@ -119,7 +119,7 @@ Breaking this down:
  -o SRR1984309_1_trimmed.fastq \                                                                  # trimmed (R1) output
  -p SRR1984309_2_trimmed.fastq \                                                                  # paired read (R2) trimmed output
  SRR1984309_1.fastq SRR1984309_2.fastq                                                            # the name of the input files  
-`
+```
 
 You will see some output describing a summary of what cutadapt did that should include something like this: 
 
