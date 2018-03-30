@@ -345,9 +345,9 @@ The .sam file is also here: [SRR1984309_mapped_to_NC_007398.sam](https://raw.git
 Open tablet:  
 - Click 'Open Assembly'.  
   - For the Primary assembly file, use the .sam file you just downloaded.   
-  - For the Reference/consensus file, use the fasta formatted file for NC_007398 that you downloaded from Genbank.  (Also here: [NC_007398.fasta](NC_007398.fasta) )
+  - For the Reference/consensus file, use the fasta formatted file for NC_007398 that you downloaded from Genbank.  (Also here: [NC_007398.fasta](https://raw.githubusercontent.com/stenglein-lab/2018_Todos_Santos/master/exercises/NC_007398.fasta) )
 
-- Click 'Open Features'.  Open the .gff3 file you downloaded from Genbank earlier.  (Also here: [NC_007398.gff3](NC_007398.gff3) )
+- Click 'Open Features'.  Open the .gff3 file you downloaded from Genbank earlier.  (Also here: [NC_007398.gff3](https://raw.githubusercontent.com/stenglein-lab/2018_Todos_Santos/master/exercises/NC_007398.gff3) )
 
 Some questions to consider when viewing the alignment:
  - Is the coverage even across the mitochondrial genome?  What is the average coverage?  
