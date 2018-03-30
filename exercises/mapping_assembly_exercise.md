@@ -365,11 +365,11 @@ Now we've practiced mapping to a reference sequence.  Imagine instead that we do
 
 There are a variety of de novo assemblers with different strengths and weaknesses.  We're going to use the [SPAdes assembler](http://cab.spbu.ru/software/spades/) to assemble the reads in our dataset that don't map to the boa constrictor genome. First, let's map the reads in our dataset to the _entire_ boa constrictor genome, not just the mitochondrial genome.
 
-The instructors have already downloaded an assembly of the boa constrictor genome from [here](http://gigadb.org/dataset/100060) and made a bowtie2 index, which can be found in the TodosSantos directory in your home directories.  We could have you make an index yourself, but that would take a long time for a Gb genome like the boa constrictor's.  The boa constrictor genome index is named boa_constrictor_bt_index.
+The instructors have already downloaded an assembly of the boa constrictor genome from [here](http://gigadb.org/dataset/100060) and made a bowtie2 index, which can be found in the TodosSantos directory in your home directories.  We could have you make an index yourself, but that would take a long time (~30 min) for a Gb genome like the boa constrictor's.  The boa constrictor genome index is named boa_constrictor_bt_index.
 
 First, let's move the bowtie index to your working folder:
 ```
-cd ~/ts_working 
+cd ~/ts_working    # in case not in the right directory
 mv ../TodosSantos/boa_constrictor_bt_index* .
 ```
 
@@ -383,7 +383,7 @@ bowtie2 -x boa_constrictor_bt_index --local \
    --no-unal --threads 4 -S SRR1984309_mapped_to_boa_genome.sam --un-conc SRR1984309_not_boa_mapped.fastq
 ```
 
-You should see that 90% of the reads aligned to the boa constrictor genome sequence, leaving 10% in the files that contain the non-mapping reads: SRR1984309_not_boa_mapped.1.fastq and ....2.fastq
+You should see that ~90% of the reads aligned to the boa constrictor genome sequence (overall alignment rate), leaving ~10% in the files that contain the non-mapping reads: `SRR1984309_not_boa_mapped.1.fastq` and `SRR1984309_not_boa_mapped.2.fastq`
 
 How many non-mapping reads remain in these files?
 
@@ -397,6 +397,7 @@ spades.py   -o SRR1984309_spades_assembly \
 ```
 
 Command line options explained:
+
 Option   |Meaning
 ------   |-------
 -o  SRR1984309_spades_assembly |name of directory (folder) where SPAdes output will go
@@ -407,7 +408,14 @@ Option   |Meaning
 
 SPAdes will output a bunch of status messages to the screen as it runs the assembly.  
 
-After SPAdes finishes, there will be output files in the `SRR1984309_spades_assembly` folder.  The key ones are:
+After SPAdes finishes, there will be output files in the `SRR1984309_spades_assembly` folder.  Change to that directory and look at the files.  
+
+```
+cd SRR1984309_spades_assembly
+ls -lh
+```
+
+The key Spades output files are:
 
 - contigs.fasta:   the assembled contigs in FASTA format
 - scaffolds.fasta: scaffolds in FASTA format
