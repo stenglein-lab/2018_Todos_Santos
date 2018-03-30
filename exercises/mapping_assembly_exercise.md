@@ -292,6 +292,14 @@ Let's deconstruct this command line (note: the comments will screw up this comma
    --threads 4            # since our computers have multiple processers, run on 4 processors to go faster
    -S SRR1984309_mapped_to_NC_007398.sam   # name of output file in SAM format
 ```
+--- | --- | ---
+-x NC_007398_bt_index   |  -x: name of index you created with bowtie2-build
+-q   | -q: the reads are in FASTQ format
+-1 SRR1984309_1_trimmed.fastq   | name of the paired-read FASTQ file 1
+-2 SRR1984309_2_trimmed.fastq   | name of the paired-read FASTQ file 2
+--no-unal   | don't output unmapped reads to the SAM output file (will make it _much_ smaller
+--threads 4   | since our computers have multiple processers, run on 4 processors to go faster
+-S SRR1984309_mapped_to_NC_007398.sam   | name of output file in SAM format
 
 The output file SRR1984309_mapped_to_NC_007398.sam is in [SAM format](https://en.wikipedia.org/wiki/SAM_(file_format)).  This is a plain text format, so you can look at the first 20 lines by running this command:
 
