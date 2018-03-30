@@ -103,7 +103,7 @@ These datasets have already been pre-cleaned prior to SRA upload, so they look p
 
 Often, NGS reads contain adapters sequences.  This happens when the library molecules are too short, and the sequence reads go all the way through the insert (the part of the library molecule derived from the sample) and into the opposite adapter.
 
-![Why_Trimming](./paried_read_outcomes.png)
+![Why_Trimming](./paired_read_outcomes.png)
 
 [cutadapt](http://cutadapt.readthedocs.io/en/stable/guide.html) is a tool that can be used to trim low quality and adapter sequences from NGS reads.  It's always a good idea to trim raw NGS reads as a first analysis step.
 
