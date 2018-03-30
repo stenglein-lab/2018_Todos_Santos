@@ -1,8 +1,6 @@
 # Mapping and Assembly Exercise
 ---
 ![TS 2018](./TS_WorkshopLogo.png)
-
-**Todos Santos Genomics and Bioinformatics Workshop 2018**
 ---
 
 ## In this exercise, we will download, process, and evaluate NGS datasets and genome sequences.  We will:
