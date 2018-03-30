@@ -304,9 +304,9 @@ Bowtie will output some information about what percentage of the reads aligned.
  - What percentage of the reads aligned to the boa constrictor mitochondrial genome?  
  - Does that number make sense?
 
-The main output file from bowtie (and other read mappers) is a file in .sam format, which describes how reads aligned to the reference sequence.  The output file from our command is `SRR1984309_mapped_to_NC_007398.sam` 
+The main output file from bowtie (and other read mappers) is a file in [sam format](https://en.wikipedia.org/wiki/SAM_(file_format)), which describes how reads aligned to the reference sequence.  The output file from our command is `SRR1984309_mapped_to_NC_007398.sam` 
 
-[SAM](https://en.wikipedia.org/wiki/SAM_(file_format)) is a plain text format, so you can look at the first 20 lines by running this command:
+Sam is a plain text format, so you can look at the first 20 lines by running this command:
 
 
 ```
@@ -340,7 +340,7 @@ get SRR1984309_mapped_to_NC_007398.sam
 
 ```
 
-The .sam file is also here: [SRR1984309_mapped_to_NC_007398.sam](./SRR1984309_mapped_to_NC_007398.sam)
+The .sam file is also here: [SRR1984309_mapped_to_NC_007398.sam](https://raw.githubusercontent.com/stenglein-lab/2018_Todos_Santos/master/exercises/SRR1984309_mapped_to_NC_007398.sam)
 
 Open tablet.  Click 'Open Assembly'.  For the Primary assembly file, use the .sam file you just downloaded.   For the Reference/consensus file, use the fasta formatted file for NC_007398 that you downloaded from Genbank.  (Also here: [NC_007398.fasta](NC_007398.fasta) )
 
