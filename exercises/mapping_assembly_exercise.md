@@ -363,6 +363,9 @@ Some questions to consider when viewing the alignment:
 
 Now we've practiced mapping to a reference sequence.  Imagine instead that we don't have a reference sequence.  In that case, we'd need to perform de novo assembly.  
 
+![assembly](./assembly.png)
+Genome assembly is like doing a jigsaw puzzle when you don't know what the picture looks like.  Image credit: Keith Bradnam, UC Davis
+
 There are a variety of de novo assemblers with different strengths and weaknesses.  We're going to use the [SPAdes assembler](http://cab.spbu.ru/software/spades/) to assemble the reads in our dataset that don't map to the boa constrictor genome. First, let's map the reads in our dataset to the _entire_ boa constrictor genome, not just the mitochondrial genome.
 
 The instructors have already downloaded an assembly of the boa constrictor genome from [here](http://gigadb.org/dataset/100060) and made a bowtie2 index, which can be found in the TodosSantos directory in your home directories.  We could have you make an index yourself, but that would take a long time (~30 min) for a Gb genome like the boa constrictor's.  The boa constrictor genome index is named boa_constrictor_bt_index.
