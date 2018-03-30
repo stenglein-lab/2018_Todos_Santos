@@ -244,7 +244,7 @@ We will map reads in the SRA dataset that we downloaded to the boa constrictor m
 
 Read mapping tools map reads very quickly using pre-built indexes of the reference sequence(s) to which reads will be mapped.  We'll use the [Bowtie2](http://www.nature.com/nmeth/journal/v9/n4/full/nmeth.1923.html) mapper. Bowtie2 has a nice [manual](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml) that explains how to use this software. 
 
-Note that there are a variety of other good read mapping tools, such as [bwa] (http://bio-bwa.sourceforge.net/), [HiSat](https://ccb.jhu.edu/software/hisat2/index.shtml), [gmap/gsnap](http://research-pub.gene.com/gmap/), and [STAR](https://github.com/alexdobin/STAR).
+Note that there are a variety of other good read mapping tools, such as [bwa](http://bio-bwa.sourceforge.net/), [HiSat](https://ccb.jhu.edu/software/hisat2/index.shtml), [gmap/gsnap](http://research-pub.gene.com/gmap/), and [STAR](https://github.com/alexdobin/STAR).
 
 The first step will be to create an index of our reference sequence (the boa constrictor mitochondrial genome).
 
@@ -300,7 +300,9 @@ Option | Meaning
 -S SRR1984309_mapped_to_NC_007398.sam   | name of output file in SAM format
 
 
-Bowtie will output some information about what percentage of the reads aligned.  What percentage of the reads aligned to the boa constrictor mitochondrial genome?  Does that number make sense?
+Bowtie will output some information about what percentage of the reads aligned.  
+ - What percentage of the reads aligned to the boa constrictor mitochondrial genome?  
+ - Does that number make sense?
 
 The main output file from bowtie (and other read mappers) is a file in .sam format, which describes how reads aligned to the reference sequence.  The output file from our command is `SRR1984309_mapped_to_NC_007398.sam` 
 
