@@ -423,13 +423,17 @@ The key Spades output files are:
 Let's look at the contigs in contigs.fasta:  
 
 ```
-cd SRR1984309_spades_assembly
 less contigs.fasta
 ```
 
 The contigs are sorted in order of length.  Recall that these are contigs made from the reads that _didn't_ map to the boa constrictor genome. Let's try to figure out what some of the contigs are.
 
-Copy the first 3 contigs (the 3 longest contigs) and open a browser, navigate to the [NCBI blastn page](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome), and paste the sequences of the first 3 contigs into the search field.  Make sure that the megablast option is selected, and run the BLAST.  
+Copy the first 3 contigs (the 3 longest contigs). Here is a command to get the first 3 contigs in non-multiline format:
+```
+fasta_to_fasta contigs.fasta | head -6 
+```
+
+Now, open a browser, navigate to the [NCBI blastn page](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome), and paste the sequences of the first 3 contigs into the search field.  Make sure that the megablast option is selected, and run the BLAST.  
 
 - What are the sequences?  Are you confident in your conclusions?  Do they make sense?
 
