@@ -344,8 +344,8 @@ The .sam file is also here: [SRR1984309_mapped_to_NC_007398.sam](https://raw.git
 
 Open tablet:  
 - Click 'Open Assembly'.  
- - For the Primary assembly file, use the .sam file you just downloaded.   
- - For the Reference/consensus file, use the fasta formatted file for NC_007398 that you downloaded from Genbank.  (Also here: [NC_007398.fasta](NC_007398.fasta) )
+  - For the Primary assembly file, use the .sam file you just downloaded.   
+  - For the Reference/consensus file, use the fasta formatted file for NC_007398 that you downloaded from Genbank.  (Also here: [NC_007398.fasta](NC_007398.fasta) )
 
 - Click 'Open Features'.  Open the .gff3 file you downloaded from Genbank earlier.  (Also here: [NC_007398.gff3](NC_007398.gff3) )
 
