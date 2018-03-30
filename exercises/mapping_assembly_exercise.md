@@ -342,18 +342,21 @@ get SRR1984309_mapped_to_NC_007398.sam
 
 The .sam file is also here: [SRR1984309_mapped_to_NC_007398.sam](https://raw.githubusercontent.com/stenglein-lab/2018_Todos_Santos/master/exercises/SRR1984309_mapped_to_NC_007398.sam)
 
-Open tablet.  Click 'Open Assembly'.  For the Primary assembly file, use the .sam file you just downloaded.   For the Reference/consensus file, use the fasta formatted file for NC_007398 that you downloaded from Genbank.  (Also here: [NC_007398.fasta](NC_007398.fasta) )
+Open tablet:  
+- Click 'Open Assembly'.  
+ - For the Primary assembly file, use the .sam file you just downloaded.   
+ - For the Reference/consensus file, use the fasta formatted file for NC_007398 that you downloaded from Genbank.  (Also here: [NC_007398.fasta](NC_007398.fasta) )
 
-Click 'Open Features'.  Open the .gff3 file you downloaded from Genbank earlier.  (Also here: [NC_007398.gff3](NC_007398.gff3) )
+- Click 'Open Features'.  Open the .gff3 file you downloaded from Genbank earlier.  (Also here: [NC_007398.gff3](NC_007398.gff3) )
 
-- Some questions to consider when viewing the alignment:
-  - Is the coverage even across the mitochondrial genome?  What is the average coverage?  
-    - Hint: right click on the read coverage graph at the top of the window and select Coverage Overview
-  - This is essentially RNA-Seq data.  Are the mitochondrial genes expressed evenly?  How does this relate to coverage?
-  - Are there any variants between this snake's mitochondrial genome sequence and the boa constrictor reference sequence?  Is that expected?
-    - Can you distinguish true variants from sequencing errors?
-    - Hint: click Color Schemes -> Variants to highlight the variant bases 
-  - Can you identify mapped read pairs?  
+Some questions to consider when viewing the alignment:
+ - Is the coverage even across the mitochondrial genome?  What is the average coverage?  
+   - Hint: right click on the read coverage graph at the top of the window and select Coverage Overview
+ - This is essentially RNA-Seq data.  Are the mitochondrial genes expressed evenly?  How does this relate to coverage?
+ - Are there any variants between this snake's mitochondrial genome sequence and the boa constrictor reference sequence?  Is that expected?
+   - Can you distinguish true variants from sequencing errors?
+   - Hint: click Color Schemes -> Variants to highlight the variant bases 
+ - Can you identify mapped read pairs?  
 
 
 ## De novo assembly
