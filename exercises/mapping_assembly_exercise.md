@@ -404,7 +404,6 @@ Option   |Meaning
 --pe1-1 SRR1984309_not_boa_mapped.1.fastq |name of read1 input file
 --pe1-2 SRR1984309_not_boa_mapped.2.fastq |name of read2 input file
 -m 12 -t 4 |use 12 Gb of RAM and 4 cores 
-```
 
 SPAdes will output a bunch of status messages to the screen as it runs the assembly.  
 
