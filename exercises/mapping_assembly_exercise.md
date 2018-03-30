@@ -1,6 +1,7 @@
 # Mapping and Assembly Exercise
 ---
 ![TS 2018](./TS_WorkshopLogo.png)
+
 **Todos Santos Genomics and Bioinformatics Workshop 2018**
 ---
 
