@@ -111,7 +111,7 @@ cutadapt has a lot of options, described [here](http://cutadapt.readthedocs.io/e
 
 We will run this command to trim our reads:
 ```
-cutadapt -b AGATGTGTATAAGAGACAG -B AGATGTGTATAAGAGACAG -b CTGTCTCTTATACACATCT -B CTGTCTCTTATACACATCT -q 30,30 --minimum-length 80 -u 1 -o SRR1984309_1_trimmed.fastq -p SRR1984309_2_trimmed.fastq SRR1984309_1.fastq SRR1984309_2.fastq
+cutadapt -b AGATGTGTATAAGAGACAG -B AGATGTGTATAAGAGACAG -b CTGTCTCTTATACACATCT -B CTGTCTCTTATACACATCT -q 30,30 --minimum-length 80 -o SRR1984309_1_trimmed.fastq -p SRR1984309_2_trimmed.fastq SRR1984309_1.fastq SRR1984309_2.fastq
 ``` 
 
 What do all these options mean?
@@ -119,9 +119,8 @@ What do all these options mean?
  cutadapt \ 
  -b AGATGTGTATAAGAGACAG -B AGATGTGTATAAGAGACAG \ 
  -b CTGTCTCTTATACACATCT -B CTGTCTCTTATACACATCT \  # trim Nextera adapters
- -q 30,30 \                                       # trim low quality bases -> see cutadapt documentation
- --minimum-length 80 \                            # remove reads shorter than this and their pairs
- -u 1  \                                          # trim the last 3' base 
+ -q 30,30 \                                       # trim low quality bases (basecall quality < 30)
+ --minimum-length 80 \                            # remove reads shorter than 80 and their pairs
  -o SRR1984309_1_trimmed.fastq \                  # trimmed (read 1) output
  -p SRR1984309_2_trimmed.fastq \                  # paired read (read 2) trimmed output
  SRR1984309_1.fastq SRR1984309_2.fastq            # input files  
