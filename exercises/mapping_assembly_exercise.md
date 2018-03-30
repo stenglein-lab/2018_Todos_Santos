@@ -1,16 +1,21 @@
-# Downloading and Processing Datasets and Genomes exercise
+# Mapping and Assembly Exercise
 ---
+Todos Santos Genomics and Bioinformatics Workshop 2018
 
 ## In this exercise, we will download, process, and evaluate NGS datasets and genome sequences.  We will:
 
 * Download a dataset from the SRA
 * Use the FASTQC tool to assess the quality of the reads in the dataset
-* Use trimmomatic to remove low quality parts of the reads
+* Trim low quality bases and adapter sequences from reads
 * Find and download genome sequences and associated annotation from NCBI
+* Map reads from a dataset to a reference genome
+* Perform de novo assembly 
 
 ---
 
 ### Downloading an SRA dataset
+
+First, we will download publicly available datasets and sequences to work with.  
 
 We will download one of the NGS datasets reported in [this paper](http://journals.plos.org/plospathogens/article?id=10.1371/journal.ppat.1004900)
 
