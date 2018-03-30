@@ -82,13 +82,13 @@ samtools sort -T tmp -O 'bam' Pool_reads_aligned_to_viral_genome.bam  > Pool_rea
 
 Now, we'll run lofreq.  To learn more about how you could run lofreq, run:
 ```
-./lofreq         # show general usage info
-./lofreq call    # show general usage info for the call command in lofreq (actually does variant calling)
+lofreq         # show general usage info
+lofreq call    # show general usage info for the call command in lofreq (actually does variant calling)
 ```
 
 To call variants, you tell lofreq the name of the reference sequence (-f option), the name of the sorted bam file, and the name of the output file that will be created (-o option).  The output is in [VCF format](https://samtools.github.io/hts-specs/VCFv4.3.pdf):
 ```
-./lofreq call -f viral_genome.fasta Pool_reads_aligned_to_viral_genome.sorted.bam -o Pool_reads_aligned_to_viral_genome.vcf
+lofreq call -f viral_genome.fasta Pool_reads_aligned_to_viral_genome.sorted.bam -o Pool_reads_aligned_to_viral_genome.vcf
 ```
 
 Use less or cat to inspect the contents of your vcf file.  
