@@ -226,15 +226,16 @@ Hint: In less: press `space` to advance a page and `q` to exit
 
 
 
-## Mapping and Assembly 
+## Read Mapping
 
 
-### Now, we will learn how to create an index from a reference sequence, then map reads to that reference sequence, and will perform a de novo assembly.  
+### Now we will learn how to map reads to a reference sequence.  Read mapping is fundamental to a variety of analyses, including RNA-Seq, SNP identification (variant calling), CHIP-Seq, etc.
 
+![mapping](./mapping.jpg)
 
 ### Create a bowtie index from the boa constrictor mitochondrial genome sequence
 
-We will map reads in the SRA dataset that we downloaded to the boa constrictor mtDNA sequence that we also downloaded 
+We will map reads in the SRA dataset that we downloaded to the boa constrictor mitochondrial genome that we downloaded.
 
 Read mapping tools map reads very quickly using pre-built indexes of the reference sequence(s) to which reads will be mapped.  We'll use the [Bowtie2](http://www.nature.com/nmeth/journal/v9/n4/full/nmeth.1923.html) mapper. Bowtie2 has a nice [manual](http://bowtie-bio.sourceforge.net/bowtie2/manual.shtml) that explains how to use this software. 
 
@@ -281,18 +282,7 @@ bowtie2 -x NC_007398_bt_index \
    --no-unal --threads 4 -S SRR1984309_mapped_to_NC_007398.sam
 ```
 
-Let's deconstruct this command line (note: the comments will screw up this command: don't copy and paste from this box): 
-```
- bowtie2
-   -x NC_007398_bt_index         # -x: name of index you created with bowtie2-build
-   -q                # -q: the reads are in FASTQ format
-   -1 SRR1984309_1_trimmed.fastq      # name of the paired-read FASTQ file 1
-   -2 SRR1984309_2_trimmed.fastq      # name of the paired-read FASTQ file 2
-   --no-unal            # don't output unmapped reads to the SAM output file (will make it _much_ smaller
-   --threads 4            # since our computers have multiple processers, run on 4 processors to go faster
-   -S SRR1984309_mapped_to_NC_007398.sam   # name of output file in SAM format
-```
-
+Let's deconstruct this command line: 
 
 Option | Meaning
 --- | --- 
@@ -304,7 +294,12 @@ Option | Meaning
 --threads 4   | since our computers have multiple processers, run on 4 processors to go faster
 -S SRR1984309_mapped_to_NC_007398.sam   | name of output file in SAM format
 
-The output file SRR1984309_mapped_to_NC_007398.sam is in [SAM format](https://en.wikipedia.org/wiki/SAM_(file_format)).  This is a plain text format, so you can look at the first 20 lines by running this command:
+
+Bowtie will output some information about what percentage of the reads aligned.  What percentage of the reads aligned to the boa constrictor mitochondrial genome?  Does that number make sense?
+
+The main output file from bowtie (and other read mappers) is a file in .sam format, which describes how reads aligned to the reference sequence.  The output file from our command is `SRR1984309_mapped_to_NC_007398.sam` 
+
+[SAM](https://en.wikipedia.org/wiki/SAM_(file_format)) is a plain text format, so you can look at the first 20 lines by running this command:
 
 
 ```
@@ -315,43 +310,57 @@ You can see that there are several header lines beginning with `@`, and then one
 
 
 
-### Visualizing aligned (mapped) reads in IGV
+### Visualizing aligned (mapped) reads in Tablet
 
-Geneious provides a nice graphical interface for visualizing the aligned reads described in your SAM file.   Other tools for visualizing this kind of data include [IGV](http://software.broadinstitute.org/software/igv/) and [Tablet](https://ics.hutton.ac.uk/tablet/)
+We will use [Tablet](https://ics.hutton.ac.uk/tablet/) to visualize the reads we mapped to the boa constrictor mitochondrial genome.
 
-First, you need to have your reference sequence in Geneious, preferably with annotations.  You can do this 2 ways:
+Other tools for visualizing this kind of data include [Geneious](https://www.geneious.com/) and [IGV](http://software.broadinstitute.org/software/igv/)
 
-1. Drag and drop the NC_007398.gb file into a folder in Geneious
-2. Download the file directly into Genious, using the NCBI->Nucleotide interface (search for NC_007398.1).  Once downloaded, drag from the NCBI download folder into another folder in Geneious.  
+First, we need to transfer the .sam file from the server to your desktop.  You can do this using a program with a graphical interface, like [Cyberduck](https://cyberduck.io/), or from the command line.  We'll do it from the command line using sftp:
 
-Once you have the boa constrictor mitochondrial genome in a folder in Geneious, you can drag and drop the SAM file that bowtie2 output into the same folder.  Geneious will tell you that it 'can't find the sequence it needs in the selected file'.  It is telling you it is trying to find the reference sequence to which you aligned reads.  Answer: 'Find a sequence with the same name in this Geneious folder' or 'Use one of the selected sequences' (after selecting the boa mtDNA sequence).
+``` 
+# run this from the command line on your laptop:
+sftp <your_username>@cctsi-104.cvmbs.colostate.edu
 
-- A few Geneious tips:
-  - Enlarge the Geneious window so that it fills the screen
-  - Click View->Expand Document View to enlarge the alignment
-  - Try playing with the visualization settings in the panels on the right of the alignment
+# enter your password when prompted
+
+# ftp does not give you a fully functional command line environment, but you can use the cd and ls commands
+cd ts_working
+ls
+
+# get downloads a file from the server to which you've connected with sftp
+get SRR1984309_mapped_to_NC_007398.sam
+
+```
+
+The .sam file is also here: [SRR1984309_mapped_to_NC_007398.sam](./SRR1984309_mapped_to_NC_007398.sam)
+
+Open tablet.  Click 'Open Assembly'.  For the Primary assembly file, use the .sam file you just downloaded.   For the Reference/consensus file, use the fasta formatted file for NC_007398 that you downloaded from Genbank.  (Also here: [NC_007398.fasta](NC_007398.fasta) )
+
+Click 'Open Features'.  Open the .gff3 file you downloaded from Genbank earlier.  (Also here: [NC_007398.gff3](NC_007398.gff3) )
 
 - Some questions to consider when viewing the alignment:
-  - Is the coverage even across the mitochondrial genome?  What is the average coverage?
+  - Is the coverage even across the mitochondrial genome?  What is the average coverage?  
+    - Hint: right click on the read coverage graph at the top of the window and select Coverage Overview
   - This is essentially RNA-Seq data.  Are the mitochondrial genes expressed evenly?  How does this relate to coverage?
   - Are there any variants between this snake's mitochondrial genome sequence and the boa constrictor reference sequence?  Is that expected?
     - Can you distinguish true variants from sequencing errors?
-  - Is it possible that reads that derive from other parts of the boa constrictor genome are mapping here?  How would you prevent that?
+    - Hint: click Color Schemes -> Variants to highlight the variant bases 
   - Can you identify mapped read pairs?  
 
 
-### De-novo assembly of non-mapping reads
+## De novo assembly
 
-OK, now we've practiced mapping to a reference sequence.  Imagine instead that we don't have a reference sequence.  In that case, we'd need to perform de novo assembly.  
+Now we've practiced mapping to a reference sequence.  Imagine instead that we don't have a reference sequence.  In that case, we'd need to perform de novo assembly.  
 
 There are a variety of de novo assemblers with different strengths and weaknesses.  We're going to use the [SPAdes assembler](http://cab.spbu.ru/software/spades/) to assemble the reads in our dataset that don't map to the boa constrictor genome. First, let's map the reads in our dataset to the _entire_ boa constrictor genome, not just the mitochondrial genome.
 
-The instructors have already downloaded an assembly of the boa constrictor genome from [here](http://gigadb.org/dataset/100060) and made a bowtie2 index, which can be found on your HDDs.  We could have you make an index yourself, but that would take a long time for a Gb genome like the boa constrictor's.  The boa constrictor genome index is named boa_constrictor_bt_index.
+The instructors have already downloaded an assembly of the boa constrictor genome from [here](http://gigadb.org/dataset/100060) and made a bowtie2 index, which can be found in the TodosSantos directory in your home directories.  We could have you make an index yourself, but that would take a long time for a Gb genome like the boa constrictor's.  The boa constrictor genome index is named boa_constrictor_bt_index.
 
-First, let's transfer the bowtie index from the HDD to your working folder:
+First, let's move the bowtie index to your working folder:
 ```
-# UPDATED AGAIN! :)
-cp /Volumes/GDWDrive/Files/MarkS/Mapping_Assembly/boa_constrictor_bt_index* .
+cd ~/ts_working 
+mv ../TodosSantos/boa_constrictor_bt_index* .
 ```
 
 Now, we'll run bowtie2 to map reads to the entire boa genome.  This time we'll run bowtie2 a little differently:
@@ -359,7 +368,7 @@ Now, we'll run bowtie2 to map reads to the entire boa genome.  This time we'll r
 2. We'll keep track of which reads _didn't_ map to the genome using the --un-conc option
 
 ```
-~/Desktop/GDW_Apps/bowtie2/bowtie2 -x boa_constrictor_bt_index --local \
+bowtie2 -x boa_constrictor_bt_index --local \
    -q -1 SRR1984309_1_trimmed.fastq  -2 SRR1984309_2_trimmed.fastq \
    --no-unal --threads 4 -S SRR1984309_mapped_to_boa_genome.sam --un-conc SRR1984309_not_boa_mapped.fastq
 ```
@@ -371,22 +380,22 @@ How many non-mapping reads remain in these files?
 We will use these non-mapping reads as input to our de novo SPAdes assembly.  Run SPAdes as follows:
 
 ```
-~/Desktop/GDW_Apps/SPAdes/bin/spades.py   -o SRR1984309_spades_assembly \
+spades.py   -o SRR1984309_spades_assembly \
    --pe1-1 SRR1984309_not_boa_mapped.1.fastq \
    --pe1-2 SRR1984309_not_boa_mapped.2.fastq \
    -m 12 -t 4
 ```
 
 Command line options explained:
-```
-~/Desktop/GDW_Apps/SPAdes/bin/spades.py   
-   -o SRR1984309_spades_assembly \         # name of directory (folder) where SPAdes output will go
-   --pe1-1 SRR1984309_not_boa_mapped.1.fastq \   # name of read1 input file
-   --pe1-2 SRR1984309_not_boa_mapped.2.fastq \   # name of read2 input file
-   -m 12 -t 4                    # use 12 Gb of RAM and 4 cores 
+Option   |Meaning
+------   |-------
+-o  SRR1984309_spades_assembly |name of directory (folder) where SPAdes output will go
+--pe1-1 SRR1984309_not_boa_mapped.1.fastq |name of read1 input file
+--pe1-2 SRR1984309_not_boa_mapped.2.fastq |name of read2 input file
+-m 12 -t 4 |use 12 Gb of RAM and 4 cores 
 ```
 
-SPAdes will output a bunch of status messages to the screen as it runs the assembly.  Can you tell what the different assembly steps are?
+SPAdes will output a bunch of status messages to the screen as it runs the assembly.  
 
 After SPAdes finishes, there will be output files in the `SRR1984309_spades_assembly` folder.  The key ones are:
 
@@ -394,13 +403,21 @@ After SPAdes finishes, there will be output files in the `SRR1984309_spades_asse
 - scaffolds.fasta: scaffolds in FASTA format
 - assembly_graph.fastg:   de bruijn graphs used to create contigs.  Can be visualized using a tool like [Bandage](https://rrwick.github.io/Bandage/)
 
-Let's look at the contigs in contigs.fasta.  Navigate to that file in the Finder and open it using a text editor like TextWrangler or TextEdit.
+Let's look at the contigs in contigs.fasta:  
+
+```
+cd SRR1984309_spades_assembly
+less contigs.fasta
+```
 
 The contigs are sorted in order of length.  Recall that these are contigs made from the reads that _didn't_ map to the boa constrictor genome. Let's try to figure out what some of the contigs are.
 
 Copy the first 3 contigs (the 3 longest contigs) and open a browser, navigate to the [NCBI blastn page](https://blast.ncbi.nlm.nih.gov/Blast.cgi?PROGRAM=blastn&PAGE_TYPE=BlastSearch&LINK_LOC=blasthome), and paste the sequences of the first 3 contigs into the search field.  Make sure that the megablast option is selected, and run the BLAST.  
 
 - What are the sequences?  Are you confident in your conclusions?  Do they make sense?
+
+
+
 
 
 #### Additional, time-permitting exercises 
@@ -418,21 +435,14 @@ Questions:
 
 **2. Assembly validation:**
 
-To quote [Miller et al](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2874646/), these contigs are only "putative reconstructions" of the sequences from which the reads derived.  How could we validate these sequences as being accurate?
+To quote [Miller et al](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2874646/), the Spades contigs are only "putative reconstructions" of the sequences from which the reads derived.  How could we validate these sequences as being accurate?
 
 One way would be to use another sequencing technology, like PCR and Sanger sequencing.
 
 Another way to validate an assembly is to re-map reads back to it using a mapping tool like bowtie.  This might reveal errors in the assembly, or mis-assemblies.  
 
-If time permits, use what you've learned and re-map reads back to these contigs.  To do this, you'll have to create a new bowtie index (e.g. of the 1st 2 or 3 contigs) using bowtie2-build, then use bowtie2 to map reads.  Then you can visualize the aligned reads in Geneious.  Can you find any problems with the assemblies?
+If time permits, use what you've learned and re-map reads back to these contigs.  To do this, you'll have to create a new bowtie index (e.g. of the 1st 2 or 3 contigs) using bowtie2-build, then use bowtie2 to map reads.  Then you can visualize the aligned reads in Tablet.  Can you find any problems with the assemblies?
 
-**3. Sequence annotation**
-
-Another thing you could do is annotate the virus contigs.  Geneious is a great tool for doing things like finding ORFs in sequences and adding annotations, that can then be exported in GenBank format.
-
-**4. Assemble the entire datasets**
-
-You could also try assembling all of the reads in the datasets, not just the ones that didn't map to the boa constrictor genome.  This will take longer, but should be doable in a minute or two on your laptops.  What are the top contigs now?  What happened to the virus contigs?
 
 
 
