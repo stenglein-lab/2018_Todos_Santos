@@ -197,41 +197,24 @@ You should have downloaded a fasta file of ~19 kb, named sequence.fasta, or some
 
 Now download the sequence in GenBank format too.  Note that this file is larger (~42 kb), because it contains annotation as well as the actual sequence.
 
-Note that the downloaded files have unhelpful names: `sequence.fasta` and `sequence.gb` or similar.  Move these files into your gdw_working folder and rename them something useful:
+Use a text editor (WordPad on windows, TextEdit on Mac, TextWranger, etc.) to inspect the files you've just downloaded.  Note that the fasta file does not have any annotation, but the genbank file does.  As we will see, both of these formats are useful in different contexts.
 
+For now, leave these files on your laptop.  We've already downloaded them onto the server, where they are in the TodosSantos folder in your home directory: `NC_007398.fasta` and `NC_007389.gb`.
 
-make sure you are in the gdw_working folder
-```
-pwd
-```
+We will use these files in the next steps.
 
-Change to the gdw_working folder if not already there:
+You can use the cat (or less) commands to output the contents of these files on the server:
 ```
-cd ~/gdw_working
-```
-
-use the mv command to move and rename the files (_change if downloaded names are different_)
-```
-mv ~/Downloads/sequence.fasta ./boa_mtDNA.fasta
-mv ~/Downloads/sequence.gb ./boa_mtDNA.gb
-```
-
-You can use the cat (or less) commands to output the contents of these files:
-```
-cat boa_mtDNA.fasta
-cat boa_mtDNA.gb
+cat NC_007398.fasta
+cat NC_007398.gb
 
 # less allows you to page through files
-less boa_mtDNA.fasta
-less boa_mtDNA.gb
+less NC_007398.fasta
+less NC_007398.gb
 ```
 
-Hint: press `space` to advance a page in less and press `q` to exit
+Hint: In less: press `space` to advance a page and `q` to exit
 
-
-We want these files in Geneious too.  Drag them into Geneious:  
- - Create a new folder in Geneious 
- - Drag and drop these files into Geneious
 
 
 ### Additional, time-permitting exercises 
