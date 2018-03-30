@@ -126,7 +126,7 @@ What do all these options mean?
  SRR1984309_1.fastq SRR1984309_2.fastq            # input files  
 ```
 
-You will see some output describing a summary of what cutadapt did that should include something like this: 
+You will see some output describing a summary of what cutadapt did that should look something like this: 
 
 ```
 
@@ -174,7 +174,7 @@ This again produces html files, which have been put online at: [SRR1984309_1_tri
 
 ### Downloading the boa constrictor genome.
 
-The dataset we downloaded was created by sequencing a library made from boa constrictor liver RNA.  We will map the reads in this dataset to the boa constrictor genome sequence to demonstrate read mapping in tomorrow's exercise.
+The dataset we downloaded was created by sequencing a library made from boa constrictor liver RNA.  We will map the reads in this dataset to the boa constrictor genome sequence to demonstrate read mapping in the following exercise.
 
 First, we need to *find* the boa constrictor genome.  As usual, there are few ways we could go about this:
 
@@ -196,13 +196,13 @@ First, we need to *find* the boa constrictor genome.  As usual, there are few wa
 
 Now we need to download the sequence.  We'll do this through the browser.  In the upper right hand corner of the page, note the 'Send' drop down 
 
-- Click Send->Complete Record->File->Format[FASTA]->Create File
+- Click Send To->Complete Record->File->Format->FASTA->Create File
 
 You should have downloaded a fasta file of ~19 kb, named sequence.fasta, or something like that.  
 
 Now download the sequence in GenBank format too.  Note that this file is larger (~42 kb), because it contains annotation as well as the actual sequence.
 
-Use a text editor (WordPad on windows, TextEdit on Mac, TextWranger, etc.) to inspect the files you've just downloaded.  Note that the fasta file does not have any annotation, but the genbank file does.  As we will see, both of these formats are useful in different contexts.
+Use a text editor (WordPad on windows, TextEdit on Mac, TextWranger, etc.) to inspect the files you've just downloaded.  Note that the fasta file does not have any annotation, but the genbank file does.  As we will see, both of these formats will be useful.
 
 For now, leave these files on your laptop.  We've already downloaded them onto the server, where they are in the TodosSantos folder in your home directory: `NC_007398.fasta` and `NC_007389.gb`.
 
@@ -210,6 +210,10 @@ We will use these files in the next steps.
 
 You can use the cat (or less) commands to output the contents of these files on the server:
 ```
+# make sure you are in the appropriate directory and copy the files over
+cd ~/ts_working
+cp ../TodosSantos/NC_007398* .
+
 cat NC_007398.fasta
 cat NC_007398.gb
 
