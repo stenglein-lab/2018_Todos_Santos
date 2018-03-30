@@ -78,6 +78,8 @@ head -20 SRR1984309_1.fastq SRR1984309_2.fastq
 
 ### Using FastQC to evaluate quality of NGS data
 
+![FastqC](./fastqc.png)
+
 [FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/) is a tool that: 
 
 > ... aims to provide a simple way to do some quality control checks on raw sequence data coming from high throughput sequencing pipelines. It provides a modular set of analyses which you can use to give a quick impression of whether your data has any problems of which you should be aware before doing any further analysis
@@ -89,7 +91,7 @@ Run fastqc as follows:
 fastqc SRR1984309_1.fastq SRR1984309_2.fastq
 ```
 
-This command generates 2 html output files: `SRR1984309_1_fastqc.html` and `SRR1984309_2_fastqc.html`
+This command generates 2 html output files which you can see using `ls`: `SRR1984309_1_fastqc.html` and `SRR1984309_2_fastqc.html`
 
 Copies of these files have been put online at: [SRR1984309_1_fastqc.html](http://htmlpreview.github.com/?https://github.com/stenglein-lab/2018_Todos_Santos/blob/master/results/SRR1984309_1_fastqc.html) and [SRR1984309_2_fastqc.html](http://htmlpreview.github.com/?https://github.com/stenglein-lab/2018_Todos_Santos/blob/master/results/SRR1984309_2_fastqc.html)).  Click on those links in a browser and have a look at the fastqc results.  
 
@@ -98,6 +100,10 @@ These datasets have already been pre-cleaned prior to SRA upload, so they look p
 ---
 
 ### Read trimming with cutadapt
+
+Often, NGS reads contain adapters sequences.  This happens when the library molecules are too short, and the sequence reads go all the way through the insert (the part of the library molecule derived from the sample) and into the opposite adapter.
+
+![Why_Trimming](./paried_read_outcomes.png)
 
 [cutadapt](http://cutadapt.readthedocs.io/en/stable/guide.html) is a tool that can be used to trim low quality and adapter sequences from NGS reads.  It's always a good idea to trim raw NGS reads as a first analysis step.
 
