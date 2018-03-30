@@ -6,3 +6,4 @@ Lectures created by Mark Stenglein for the Genomics and Bioinformatics workshop 
 - [Database resources](./Stenglein_databases_lecture.pdf)
 - [Genome assembly](./Stenglein_de_novo_assembly_lecture.pdf)
 - [Metagenomics](./Stenglein_metagenomics_lecture.pdf)
+- [Variants](./Stenglein_intrahost_variants.pdf)

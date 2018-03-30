@@ -2,5 +2,6 @@ Exercises created by Mark Stenglein for the Genomics and Bioinformatics workshop
 
 ![TS 2018](./TS_WorkshopLogo.png)
 
-[Mapping and Assembly exercise](./mapping_assembly_exercise.md)
+- [Mapping and Assembly exercise](./mapping_assembly_exercise.md)
+- [Variant calling exercise](./variant_exercise.md)
 
