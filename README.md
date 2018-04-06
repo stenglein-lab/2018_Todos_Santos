@@ -8,5 +8,7 @@ Todos Santos Genomics and Bioinformatics Workshop, Apr 9-13 2018
 
 - [Stenglein exercises](./exercises/ReadMe.md)
 
+- [Genomics and NGS glossary](./Genomics_and_NGS_Glossary.md)
+
 
 
