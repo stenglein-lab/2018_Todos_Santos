@@ -1,6 +1,6 @@
 ## A (partial) glossary of genomics and sequencing terminology
 
-For [GDW 2017](http://gdwworkshop.colostate.edu/) by [Mark Stenglein](http://www.stengleinlab.org)
+For the [Todos Santos 2018 computational biology and genomics workshop](https://dbsloan.github.io/TS2018/) by [Mark Stenglein](http://www.stengleinlab.org)
 
 - [16S](#16s)
 - [Adapter](#adapter)
