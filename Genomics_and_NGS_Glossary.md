@@ -139,7 +139,7 @@ A variety of related techniques that involve the study of genetic material that 
 
 <img src="./images/metagenomics_vs_wgs.jpg">
 
-**Figure: ** In metagenomic sequencing, a 'metagenome' composed of the genomes of multiple organisms is studied using sequencing. Contast this to the study of a single genome, for instance [whole genome sequencing](#WGS) of a bacterial isolate.
+**Figure:** In metagenomic sequencing, a 'metagenome' composed of the genomes of multiple organisms is studied using sequencing. Contast this to the study of a single genome, for instance [whole genome sequencing](#WGS) of a bacterial isolate.
 
 ### NGS
 
