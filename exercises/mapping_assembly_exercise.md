@@ -236,6 +236,10 @@ Hint: In less: press `space` to advance a page and `q` to exit
 
 
 
+![stop](./stop.png)
+**We will stop here for today and continue tomorrow**
+
+
 
 ## Read Mapping
 
