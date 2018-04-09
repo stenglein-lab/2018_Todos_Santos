@@ -214,7 +214,7 @@ Now download the sequence in GenBank format too.  Note that this file is larger 
 
 Use a text editor (WordPad on windows, TextEdit on Mac, TextWranger, etc.) to inspect the files you've just downloaded.  Note that the fasta file does not have any annotation, but the genbank file does.  As we will see, both of these formats will be useful.
 
-For now, leave these files on your laptop.  We've already downloaded them onto the server, where they are in the TodosSantos folder in your home directory: `NC_007398.fasta` and `NC_007389.gb`.
+Use cyberduck to transfer these files to the server and move them to the ts_working directory.  
 
 We will use these files in the next steps.
 
