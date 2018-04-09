@@ -222,7 +222,6 @@ You can use the cat (or less) commands to output the contents of these files on 
 ```
 # make sure you are in the appropriate directory and copy the files over
 cd ~/ts_working
-cp ../TodosSantos/NC_007398* .
 
 cat NC_007398.fasta
 cat NC_007398.gb
