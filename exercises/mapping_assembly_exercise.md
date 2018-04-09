@@ -80,7 +80,7 @@ head -20 SRR1984309_1.fastq SRR1984309_2.fastq
 - The quality scores for this dataset are in Illumina 1.9 format.  What is the maximum quality score for each basecall?  How does that relate to the estimated probability that a basecall is wrong?
 - How many reads are in each file?  There are several ways you can do this:
  - the `wc -l name_of_file` command will tell you the number of lines in the file
- - you could use the grep command with output piped to wc to count the # of lines that begin with @SRR: `grep @SRR | wc -l`
+ - you could use the grep command with output piped to wc to count the # of lines that begin with @SRR: `grep @SRR SRR1984309_1.fastq | wc -l`
 
 ---
 
