@@ -332,10 +332,13 @@ We will use [Tablet](https://ics.hutton.ac.uk/tablet/) to visualize the reads we
 
 Other tools for visualizing this kind of data include [Geneious](https://www.geneious.com/) and [IGV](http://software.broadinstitute.org/software/igv/)
 
-First, we need to transfer the .sam file from the server to your desktop.  You can do this using a program with a graphical interface, like [Cyberduck](https://cyberduck.io/), or from the command line.  We'll do it from the command line using sftp:
+First, we need to transfer the .sam file from the server to your desktop.  You can do this using Cyberduck. 
 
+It is also possible to transfer files from the command line if you are using a Mac computer or if your Windows computer has a command line interface tht supports sftp.
+
+**Alternative, command line way to transfer files using the command line and sftp:**
 ``` 
-# run this from the command line on your laptop:
+# run this from the command line on your laptop: 
 sftp <your_username>@cctsi-104.cvmbs.colostate.edu
 
 # enter your password when prompted
