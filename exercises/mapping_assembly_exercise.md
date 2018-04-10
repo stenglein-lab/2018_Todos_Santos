@@ -349,8 +349,6 @@ get SRR1984309_mapped_to_NC_007398.sam
 
 ```
 
-The .sam file is also here: [SRR1984309_mapped_to_NC_007398.sam](https://raw.githubusercontent.com/stenglein-lab/2018_Todos_Santos/master/exercises/SRR1984309_mapped_to_NC_007398.sam)
-
 Open tablet:  
 - Click 'Open Assembly'.  
   - For the Primary assembly file, use the .sam file you just downloaded.   
