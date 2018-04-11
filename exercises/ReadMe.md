@@ -4,4 +4,5 @@ Exercises created by Mark Stenglein for the Genomics and Bioinformatics workshop
 
 - [Mapping and Assembly exercise](./mapping_assembly_exercise.md)
 - [Variant calling exercise](./variant_exercise.md)
+- [Kim Hoke's mothurexercise](./mothur2018.Rmd)
 
